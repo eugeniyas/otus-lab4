@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-app
+  labels:
+    app: test-app
+spec:
+  template:
+    metadata:
+      name: test-app
+      labels:
+        app: test-app
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: test-app
+        image: eugeniyas/otuslabtestapp:v1
+        env:
+          - name: SERVICE_NAME
+            value: "arch.homework/otusapp"
+          - name: SLEEP
+            value: "5"
+  backoffLimit: 3
